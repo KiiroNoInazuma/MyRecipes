@@ -21,7 +21,7 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/get/{recipeId}")
-    public ResponseEntity<Recipe> getRecipe(@PathVariable Integer recipeId) {
+    public ResponseEntity<Recipe> getRecipe(@PathVariable int recipeId) {
         Recipe recipe = recipeService.getRecipe(recipeId);
         return ResponseEntity.ok(recipe);
     }
@@ -33,7 +33,7 @@ public class RecipeController {
     }
 
     @GetMapping("/ingredient/get/{recipeId}")
-    public ResponseEntity<Ingredient> getIngredient(@PathVariable Integer recipeId, @RequestParam Integer ingredientId) {
+    public ResponseEntity<Ingredient> getIngredient(@PathVariable int recipeId, @RequestParam int ingredientId) {
         Ingredient ingredient = recipeService.getIngredient(recipeId, ingredientId);
         return ResponseEntity.ok(ingredient);
     }
