@@ -17,8 +17,9 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public void addRecipe(Recipe recipe) {
-        REPOSITORY_RECIPE.put(++countId, recipe);
         recipe.setIngredients(ingredients);
+        REPOSITORY_RECIPE.put(++countId, recipe);
+
     }
 
     @Override
