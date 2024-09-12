@@ -8,23 +8,24 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static com.example.myrecipes.services.impl.IngredientServiceImpl.ingredients;
+
 @Service
 @Slf4j
 public class RecipeServiceImpl implements RecipeService {
     private int countId;
-    private final static Map<Integer, Recipe> REPOSITORY_RECIPE = new HashMap<>();
-    private final static List<Ingredient> ingredients = new ArrayList<>();
+    public static final Map<Integer, Recipe> repositoryRecipe = new HashMap<>();
 
     @Override
     public void addRecipe(Recipe recipe) {
         recipe.setIngredients(ingredients);
-        REPOSITORY_RECIPE.put(++countId, recipe);
+        repositoryRecipe.put(++countId, recipe);
 
     }
 
     @Override
     public Recipe getRecipe(Integer recipeId) {
-        return REPOSITORY_RECIPE.get(recipeId);
+        return repositoryRecipe.get(recipeId);
     }
 
     @Override
@@ -34,6 +35,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Ingredient getIngredient(Integer recipeId, Integer ingredientId) {
-        return REPOSITORY_RECIPE.get(recipeId).getIngredients().get(ingredientId - 1);
+        return repositoryRecipe.get(recipeId).getIngredients().get(ingredientId - 1);
     }
 }
