@@ -21,7 +21,23 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
+    public Ingredient editIngredient(int id, Ingredient ingredient) {
+        ingredients.set(id - 1, ingredient);
+        return ingredient;
+    }
+
+    @Override
+    public void removeIngredient(int id) {
+        ingredients.remove(id - 1);
+    }
+
+    @Override
     public Ingredient getIngredient(Integer recipeId, Integer ingredientId) {
         return repositoryRecipe.get(recipeId).getIngredients().get(ingredientId - 1);
+    }
+
+    @Override
+    public List<Ingredient> getAllIngredient() {
+        return ingredients;
     }
 }

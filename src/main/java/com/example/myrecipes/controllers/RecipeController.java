@@ -1,6 +1,5 @@
 package com.example.myrecipes.controllers;
 
-import com.example.myrecipes.models.Ingredient;
 import com.example.myrecipes.models.Recipe;
 import com.example.myrecipes.services.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -26,15 +25,5 @@ public class RecipeController {
         return ResponseEntity.ok(recipe);
     }
 
-    @PostMapping("/ingredient/add")
-    public ResponseEntity<Void> addIngredient(@RequestBody Ingredient ingredient) {
-        recipeService.addIngredient(ingredient);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
 
-    @GetMapping("/ingredient/get/{recipeId}")
-    public ResponseEntity<Ingredient> getIngredient(@PathVariable int recipeId, @RequestParam int ingredientId) {
-        Ingredient ingredient = recipeService.getIngredient(recipeId, ingredientId);
-        return ResponseEntity.ok(ingredient);
-    }
 }

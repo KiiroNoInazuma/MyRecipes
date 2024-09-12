@@ -1,6 +1,5 @@
 package com.example.myrecipes.services.impl;
 
-import com.example.myrecipes.models.Ingredient;
 import com.example.myrecipes.models.Recipe;
 import com.example.myrecipes.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,15 +25,5 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Recipe getRecipe(Integer recipeId) {
         return repositoryRecipe.get(recipeId);
-    }
-
-    @Override
-    public void addIngredient(Ingredient ingredient) {
-        ingredients.add(ingredient);
-    }
-
-    @Override
-    public Ingredient getIngredient(Integer recipeId, Integer ingredientId) {
-        return repositoryRecipe.get(recipeId).getIngredients().get(ingredientId - 1);
     }
 }
