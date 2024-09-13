@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class RecipeController {
@@ -25,5 +27,9 @@ public class RecipeController {
         return ResponseEntity.ok(recipe);
     }
 
+    @GetMapping("/recipe/get/ten")
+    public ResponseEntity<List<?>> listTenRecipes() {
+        return ResponseEntity.ok(recipeService.listTenRecipes());
+    }
 
 }
