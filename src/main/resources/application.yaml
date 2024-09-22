@@ -5,3 +5,8 @@ server:
 spring:
   application:
     name: "MyRecipes"
+
+my:
+  custom:
+   path-file: "src/main/resources/"
+   name-file: "text.json"
