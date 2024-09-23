@@ -9,4 +9,4 @@ spring:
 my:
   custom:
    path-file: "src/main/resources/"
-   name-file: "text.json"
+   name-file: "pic.jpg"

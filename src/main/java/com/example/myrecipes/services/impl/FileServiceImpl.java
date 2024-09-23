@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.Map;
 
 @Service
@@ -26,8 +28,20 @@ public class FileServiceImpl implements FileService {
     private String nameFile;
 
     @Override
+    public Path getPath() {
+        return Path.of(pathFile, nameFile);
+    }
+
+    @SneakyThrows
+    @Override
+    public InputStreamResource downloadDataFile() {
+        File file = new File(getPath().toString());
+        return new InputStreamResource(new FileInputStream(file));
+    }
+
+    @Override
     public void saveFile(Map<Integer, Recipe> json) {
-        try (FileWriter fileWriter = new FileWriter(pathFile + nameFile)) {
+        try (FileWriter fileWriter = new FileWriter(getPath().toString())) {
             fileWriter.write(convertJsonToString(json));
 
         } catch (IOException e) {
@@ -47,7 +61,7 @@ public class FileServiceImpl implements FileService {
     @SneakyThrows
     @Override
     public Map<Integer, Recipe> readAndWriteContent() {
-        String s = readFile(pathFile + nameFile);
+        String s = readFile(getPath().toString());
         return convertStringToMap(s);
     }
 
