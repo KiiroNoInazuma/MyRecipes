@@ -3,6 +3,7 @@ package com.example.myrecipes.services.impl;
 import com.example.myrecipes.models.Recipe;
 import com.example.myrecipes.services.FileService;
 import com.example.myrecipes.services.RecipeService;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class RecipeServiceImpl implements RecipeService {
         repositoryRecipe = new HashMap<>();
     }
 
-   // @PostConstruct
+    @PostConstruct
     public void init() {
         try {
             if (Files.exists(fileService.getPath()) && Files.size(fileService.getPath()) != 0) {

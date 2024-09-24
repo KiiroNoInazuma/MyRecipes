@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -37,6 +38,16 @@ public class FileServiceImpl implements FileService {
     public InputStreamResource downloadDataFile() {
         File file = new File(getPath().toString());
         return new InputStreamResource(new FileInputStream(file));
+    }
+
+    @SneakyThrows
+    @Override
+    public void uploadDataFile(MultipartFile multipartFile) {
+        File file = new File(getPath().toString());
+        try (BufferedInputStream bis = new BufferedInputStream(multipartFile.getInputStream());
+             FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(bis.readAllBytes());
+        }
     }
 
     @Override
